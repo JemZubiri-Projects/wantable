@@ -1,0 +1,20 @@
+<div id="<%= dom_id(creator) %>" class="grid grid-cols-6 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+  <div>
+    <%= link_to creator.name, creator_path(creator) %>
+  </div>
+  <div>
+    <%=creator.email%>
+  </div>
+  <div>
+    <%=creator.status%>
+  </div>
+  <div>
+    <%=creator.total_paid%>
+  </div>
+  <div>
+    <%=creator.pending_payouts_count%>
+  </div>
+  <div>
+    Actions
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to creator"), creator_path(@creator) %>
+  <div class="header">
+    <h1>Edit creator</h1>
+  </div>
+  <%= render "form", creator: @creator %>
+</main>
