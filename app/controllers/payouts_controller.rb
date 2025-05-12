@@ -27,12 +27,9 @@ class PayoutsController < ApplicationController
   def update
     @payout = @creator.payouts.find(params[:id])
     if @payout.mark_as_paid!
-      @creator.reload
-      @creator.payouts.reload
-
       respond_to do |format|
         format.turbo_stream
-        format.html
+        format.html { redirect_to creator_path(@creator) }
       end
     else
       render :edit, status: :unprocessable_entity
