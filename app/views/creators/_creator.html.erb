@@ -1,20 +1,17 @@
-<div id="<%= dom_id(creator) %>" class="grid grid-cols-6 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-  <div>
-    <%= link_to creator.name, creator_path(creator) %>
+<div id="<%= dom_id(creator) %>" class="grid grid-cols-5 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+  <div class="font-bold text-gray-900 whitespace-nowrap dark:text-white">
+    <%= link_to creator.name, creator_path(creator), data: { turbo_frame: "_top" } %>
   </div>
   <div>
-    <%=creator.email%>
+    <%= creator.email %>
   </div>
   <div>
-    <%=creator.status%>
+    <%= creator.status %>
   </div>
   <div>
-    <%=creator.total_paid%>
+    <%= creator.total_paid %>
   </div>
   <div>
-    <%=creator.pending_payouts_count%>
-  </div>
-  <div>
-    Actions
+    <%= creator.pending_payouts_count %>
   </div>
 </div>

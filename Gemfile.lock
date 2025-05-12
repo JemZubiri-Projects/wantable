@@ -135,6 +135,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    material_icons (4.0.0)
+      railties (>= 3.2)
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -302,6 +304,7 @@ DEPENDENCIES
   debug
   jbuilder
   jsbundling-rails
+  material_icons
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)

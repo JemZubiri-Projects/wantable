@@ -1,2 +1,2 @@
-<%= turbo_stream.append "creators", partial: "creators/creator", locals: { creator: @creator } %>
+<%= turbo_stream.prepend "creators_list", partial: "creators/creator", locals: { creator: @creator } %>
 <%= turbo_stream.update Creator.new, "" %>

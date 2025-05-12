@@ -1,0 +1,12 @@
+<div id="<%= dom_id(payout) %>" class="grid grid-cols-4 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <div>
+    $<%= number_with_precision(payout.amount, precision: 2) %>
+  </div>
+  <div class="<%= payout.status == "paid" ? "text-green-600" : "text-yellow-500" %>">
+    <%= payout.status.capitalize %>
+  </div>
+  <div>
+    <%= payout.paid_at.present? ? payout.paid_at.strftime("%Y-%m-%d %H:%M") : "—" %>
+  </div>
+  
+</div>

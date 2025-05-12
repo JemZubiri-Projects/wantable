@@ -1,18 +1,31 @@
 # frozen_string_literal: true
 
 class CreatorsController < ApplicationController
+  before_action :set_creator, only: %i[show edit update destroy]
+
   def index
     @creators = Creator.all.includes(:payouts)
     @creator = Creator.new
   end
 
   def show
-    @creator = Creator.find(params[:id])
-    @payouts = @creator.payouts.order(created_at: :desc)
+    @payouts = @creator.payouts.order(updated_at: :asc)
   end
 
   def new
     @creator = Creator.new
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
+  end
+
+  def update
+    if @creator.update(creator_params)
+      redirect_to creators_path
+    else
+      render :edit
+    end
   end
 
   def create
@@ -27,7 +40,16 @@ class CreatorsController < ApplicationController
     end
   end
 
+  def destroy
+    @creator.destroy
+    redirect_to creators_path
+  end
+
   private
+
+  def set_creator
+    @creator = Creator.find(params[:id])
+  end
 
   def creator_params
     params.require(:creator).permit(:name, :email)

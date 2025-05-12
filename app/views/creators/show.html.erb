@@ -1,0 +1,47 @@
+<main class="container">
+  <div class="header">
+    <h1 class="text-2xl font-bold mb-4 text-white">Hello <%= @creator.name %></h1>
+    <%= link_to "Back to Creators", creators_path, class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+  </div>
+  <%= turbo_frame_tag "creator_#{@creator.id}" do %>
+    <div class="w-full text-sm my-8 text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <div class="grid grid-cols-6 text-xs gap-4 p-4 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div>Name</div>
+        <div>Email</div>
+        <div>Status</div>
+        <div>Total Paid</div>
+        <div>Pending Payouts</div>
+        <div>Actions</div>
+      </div>
+      <div class="grid grid-cols-6 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <div><%= @creator.name %></div>
+        <div><%= @creator.email %></div>
+        <div><%= @creator.status.capitalize %></div>
+        <div><%= @creator.payouts.sum(:amount).to_s %></div>
+        <div><%= @creator.payouts.pending.count %></div>
+        <div>
+          <%= link_to 'Edit', edit_creator_path(@creator), data: { turbo_frame: "creator_#{@creator.id}" }, class: "text-indigo-600" %> |
+          <%= link_to 'Delete', creator_path(@creator), method: :delete, data: { turbo_frame: "creator_#{@creator.id}" }, class: "text-red-600" %>
+        </div>
+      </div>
+    <% end %>
+    <h2 class="text-xl font-semibold mt-6 mb-4">Payouts</h2>
+    <% payout_placeholder_id = dom_id(Payout.new(creator: @creator)) %>
+    <%= link_to "New payout", 
+        new_creator_payout_path(@creator), 
+        data: { turbo_frame: dom_id(Payout.new(creator: @creator)) },
+        class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+    <%= turbo_frame_tag dom_id(Payout.new(creator: @creator)) do %><% end %>
+    <div class="w-full text-sm my-8 text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <div class="grid grid-cols-4 gap-4 p-4 bg-gray-50 dark:bg-gray-700">
+        <div>Amount</div>
+        <div>Status</div>
+        <div>Paid At</div>
+        <div>Actions</div>
+      </div>
+    </div>
+    <div id="creator_<%= @creator.id %>_payouts_list" class="divide-y">
+      <%= render @creator.payouts %>
+    </div>
+  </div>
+</main>

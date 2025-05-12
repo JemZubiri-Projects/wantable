@@ -1,9 +1,10 @@
-<%= form_with(model: [ @creator, @creator.payouts.new ], data: { turbo_frame: "_top" }) do |f| %>
-  <div>
-    <%= f.label :amount %>
-    <%= f.number_field :amount, step: 0.01, class: "border p-1" %>
-  </div>
-  <div>
-    <%= f.submit "Create Payout", class: "bg-blue-500 text-white px-2 py-1 mt-2" %>
+<%= form_with(model: [@creator, @payout], data: { turbo_frame: "creator_#{@creator.id}_new_payout" }) do |f| %>
+  <div class="grid grid-cols-4 gap-4 py-4 my-4">
+    <div>
+      <%= f.number_field :amount, step: 0.01, placeholder: "Amount", class: "w-full rounded border border-gray-300 px-2 py-1 text-sm" %>
+    </div>
+    <div>
+      <%= f.submit @payout.persisted? ? "Update" : "Create", class: "bg-indigo-600 text-white px-4 py-1 rounded hover:bg-indigo-700 text-sm" %>
+    </div>
   </div>
 <% end %>
