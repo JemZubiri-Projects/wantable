@@ -1,0 +1,13 @@
+<%= form_with model: creator, url: creator_path(creator), method: :patch, data: { turbo_frame: "#{dom_id(@creator, :stats)}_wrapper" } do |f| %>
+  <div class="grid grid-cols-6 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <div><%= f.text_field :name, class: "form-input bg-white rounded-md p-2 text-black" %></div>
+    <div><%= f.email_field :email, class: "form-input bg-white rounded-md p-2 text-black" %></div>
+    <div><%= creator.status.capitalize %></div>
+    <div><%= creator.total_paid %></div>
+    <div><%= creator.pending_payouts_count %></div>
+    <div class="inline-flex space-x-2">
+      <%= f.submit "Save", class: "text-green-600 hover:underline" %>
+      <%= link_to "Cancel", creator_path(creator), data: { turbo_frame: dom_id(creator, :stats) }, class: "text-gray-500 hover:underline px-5 py-2.5" %>
+    </div>
+  </div>
+<% end %>

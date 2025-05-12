@@ -21,10 +21,17 @@ class CreatorsController < ApplicationController
   end
 
   def update
-    if @creator.update(creator_params)
-      redirect_to creators_path
-    else
-      render :edit
+    @creator.update(creator_params)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to creators_path, notice: 'Creator updated.' }
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to creator_path(@creator) }
     end
   end
 

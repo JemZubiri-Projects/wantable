@@ -12,9 +12,11 @@
       <div>Pending Payouts</div>
       <div>Actions</div>
     </div>
-    <%= turbo_frame_tag "creator_stats_#{@creator.id}" do %>
-      <%= render partial: "creators/stats", locals: { creator: @creator } %>
-    <% end %>
+    <div id="<%= dom_id(@creator, :stats) %>_wrapper">
+      <%= turbo_frame_tag "creator_stats_#{@creator.id}" do %>
+        <%= render partial: "creators/stats", locals: { creator: @creator } %>
+      <% end %>
+    </div>
     <h2 class="text-xl font-semibold mt-6 mb-4">Payouts</h2>
     <% payout_placeholder_id = dom_id(Payout.new(creator: @creator)) %>
     <%= link_to "New payout", 

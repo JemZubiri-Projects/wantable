@@ -1,5 +1,5 @@
 <%= turbo_stream.replace "#{dom_id(@creator, :stats)}_wrapper" do %>
   <%= turbo_frame_tag dom_id(@creator, :stats) do %>
-    <%= render partial: "creators/stats_form", locals: { creator: @creator, editing: true } %>
+    <%= render partial: "creators/stats", locals: { creator: @creator, editing: false } %>
   <% end %>
 <% end %>

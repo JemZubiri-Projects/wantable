@@ -1,11 +1,15 @@
 <div class="grid grid-cols-6 gap-4 p-4 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-  <div><%= creator.name %></div>
-  <div><%= creator.email %></div>
-  <div><%= creator.status.capitalize %></div>
-  <div><%= creator.total_paid %></div>
-  <div><%= creator.pending_payouts_count %></div>
-  <div>
-    <%= link_to 'Edit', edit_creator_path(creator), data: { turbo_frame: "creator_#{creator.id}" }, class: "text-indigo-600" %> |
-    <%= link_to 'Delete', creator_path(creator), method: :delete, data: { turbo_frame: "creator_#{creator.id}" }, class: "text-red-600" %>
-  </div>
+  <% if defined?(editing) && editing %>
+    <%= render partial: "creators/edit_stats_form", locals: { creator: creator } %>
+  <% else %>
+    <div><%= creator.name %></div>
+    <div><%= creator.email %></div>
+    <div><%= creator.status.capitalize %></div>
+    <div><%= creator.total_paid %></div>
+    <div><%= creator.pending_payouts_count %></div>
+    <div class="inline-flex space-x-2 ">
+      <%= link_to 'Edit', edit_creator_path(creator), data: { turbo_frame: dom_id(creator, :stats), turbo_stream: true }, class: "text-indigo-600" %>
+      <%= button_to 'Delete', creator_path(creator), method: :delete, data: { turbo_frame: "_top" }, class: "text-red-600" %>
+    </div>
+  <% end %>
 </div>
