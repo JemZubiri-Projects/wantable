@@ -29,7 +29,7 @@ class PayoutsController < ApplicationController
     if @payout.mark_as_paid!
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to creator_path(@creator) }
+        format.html
       end
     else
       render :edit, status: :unprocessable_entity

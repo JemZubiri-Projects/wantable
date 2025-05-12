@@ -73,5 +73,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
-
+gem 'sidekiq'
 gem 'tailwindcss-rails', '~> 4.2'

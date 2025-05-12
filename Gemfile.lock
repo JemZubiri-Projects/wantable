@@ -135,8 +135,6 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
-    material_icons (4.0.0)
-      railties (>= 3.2)
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -215,6 +213,8 @@ GEM
     rake (13.2.1)
     rdoc (6.13.1)
       psych (>= 4.0.0)
+    redis-client (0.24.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -248,9 +248,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    simple_form (5.3.1)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
+    sidekiq (7.3.9)
+      base64
+      connection_pool (>= 2.3.0)
+      logger
+      rack (>= 2.2.4)
+      redis-client (>= 0.22.2)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -304,14 +307,13 @@ DEPENDENCIES
   debug
   jbuilder
   jsbundling-rails
-  material_icons
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
   rubocop
   rubocop-rails
   selenium-webdriver
-  simple_form (~> 5.3)
+  sidekiq
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 4.2)

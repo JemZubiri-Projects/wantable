@@ -39,8 +39,8 @@ class CreatorsController < ApplicationController
     @creator = Creator.new(creator_params)
     if @creator.save
       respond_to do |format|
-        format.html { redirect_to creators_path, notice: 'Creator was successfully created.' }
         format.turbo_stream
+        format.html { redirect_to creators_path, notice: 'Creator was successfully created.' }
       end
     else
       render :new, status: :unprocessable_entity

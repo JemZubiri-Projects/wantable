@@ -8,6 +8,6 @@ class Payout < ApplicationRecord
   scope :pending, -> { where(status: :pending) }
 
   def mark_as_paid!
-    update!(status: :paid, paid_at: Time.current)
+    ProcessPayoutJob.perform_later(id)
   end
 end
