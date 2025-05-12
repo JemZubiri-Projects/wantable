@@ -1,0 +1,6 @@
+<%= turbo_stream.replace dom_id(@payout) do %>
+  <%= render partial: "payouts/payout", locals: { payout: @payout, creator: @creator } %>
+<% end %>
+<%= turbo_stream.replace "creator_stats_#{@creator.id}" do %>
+  <%= render partial: "creators/stats", locals: { creator: @creator } %>
+<% end %>

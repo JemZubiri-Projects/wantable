@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   root 'creators#index'
 
   resources :creators do
-    resources :payouts, only: %i[new create]
+    resources :payouts, only: %i[new create update]
   end
-
-  resources :payouts, only: [:update]
 end

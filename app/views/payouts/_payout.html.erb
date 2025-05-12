@@ -6,6 +6,11 @@
     <%= payout.status.capitalize %>
   </div>
   <div>
-    <%= payout.created_at%>
+    <%= payout.paid_at.present? ? payout.paid_at.strftime("%Y-%m-%d %H:%M") : "—" %>
   </div>
+  <% if payout.status == "pending" %>
+    <div>
+      <%= button_to 'Mark as Paid', creator_payout_path(@creator, payout), method: :patch, data: { turbo_frame: dom_id(payout) }, class: "text-green-600" %>
+    </div>
+  <% end %>
 </div>
