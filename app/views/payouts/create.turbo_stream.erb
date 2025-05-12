@@ -1,4 +1,4 @@
 <%= turbo_stream.prepend "creator_#{@creator.id}_payouts_list" do %>
   <%= render partial: "payout", locals: { payout: @payout } %>
 <% end %>
-<%= turbo_stream.replace Payout.new, "" %> <!-- remove the form after creation -->
+<%= turbo_stream.update dom_id(Payout.new(creator: @creator)), "" %> <!-- remove the form after creation -->

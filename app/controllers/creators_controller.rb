@@ -9,7 +9,7 @@ class CreatorsController < ApplicationController
   end
 
   def show
-    @payouts = @creator.payouts.order(updated_at: :asc)
+    @payouts = @creator.payouts.order(updated_at: :desc)
   end
 
   def new

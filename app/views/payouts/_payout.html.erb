@@ -6,7 +6,6 @@
     <%= payout.status.capitalize %>
   </div>
   <div>
-    <%= payout.paid_at.present? ? payout.paid_at.strftime("%Y-%m-%d %H:%M") : "—" %>
+    <%= payout.created_at%>
   </div>
-  
 </div>
